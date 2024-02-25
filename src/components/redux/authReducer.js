@@ -1,21 +1,22 @@
-import { LOGIN, LOGOUT } from './actionTypes';
+import { LOGIN, LOGOUT } from "./actionTypes";
 
 const initialState = {
   isAuthenticated: false,
-  loginError:null
-
+  loginError: null,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN: {
-      console.log("login....",action);
       const { username, password } = action.payload;
-      if ((username === 'admin' && password === 'admin1234') || (username === 'guest' && password === 'guest1234')) {
+      if (
+        (username === "admin" && password === "admin1234") ||
+        (username === "guest" && password === "guest1234")
+      ) {
         return {
           ...state,
           isAuthenticated: true,
-          loginError:null
+          loginError: null,
         };
       }
       return state;
@@ -24,7 +25,7 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        loginError:"Invalid credentials"
+        loginError: "Invalid credentials",
       };
     }
     default:
